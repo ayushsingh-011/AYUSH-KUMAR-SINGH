@@ -5,24 +5,10 @@
 
 
 /* =========================================
-   SCREEN ELEMENTS
+   ELEMENTS
 ========================================= */
 
 const screens = document.querySelectorAll(".screen");
-
-const intro = document.getElementById("intro");
-const countdown = document.getElementById("countdown");
-const birthday = document.getElementById("birthday");
-const message = document.getElementById("message");
-const memories = document.getElementById("memories");
-const finalMessage = document.getElementById("finalMessage");
-const proposal = document.getElementById("proposal");
-const result = document.getElementById("result");
-
-
-/* =========================================
-   BUTTONS
-========================================= */
 
 const startBtn = document.getElementById("startBtn");
 const countdownBtn = document.getElementById("countdownBtn");
@@ -35,396 +21,160 @@ const yesBtn = document.getElementById("yesBtn");
 const maybeBtn = document.getElementById("maybeBtn");
 const noBtn = document.getElementById("noBtn");
 
+const restartBtn = document.getElementById("restartBtn");
+
+const musicBtn = document.getElementById("musicBtn");
+const bgMusic = document.getElementById("bgMusic");
+
+const typingText = document.getElementById("typingText");
+
 const answerText = document.getElementById("answerText");
 
+const resultIcon = document.getElementById("resultIcon");
 const resultTitle = document.getElementById("resultTitle");
 const resultMessage = document.getElementById("resultMessage");
-const resultIcon = document.getElementById("resultIcon");
-
-const restartBtn = document.getElementById("restartBtn");
 
 const confetti = document.getElementById("confetti");
 
 
 /* =========================================
-   MUSIC
+   SCREEN NAVIGATION
 ========================================= */
 
-const musicBtn = document.getElementById("musicBtn");
-const bgMusic = document.getElementById("bgMusic");
-
-let musicPlaying = false;
-
-
-/* =========================================
-   GOOGLE FORM CONNECTION
-========================================= */
-
-const GOOGLE_FORM_URL =
-    "https://docs.google.com/forms/d/e/1FAIpQLSf6v-i2wTzYnQ3QmPXEtG1FkzkwppxPmgz3oV8uTLKeAISKlw/formResponse";
-
-const GOOGLE_ENTRY =
-    "entry.98190819";
-
-
-/*
-   Sends the selected answer
-   to your Google Form.
-*/
-
-function submitAnswer(answer) {
-
-    const formData = new FormData();
-
-    formData.append(
-        GOOGLE_ENTRY,
-        answer
-    );
-
-    fetch(GOOGLE_FORM_URL, {
-
-        method: "POST",
-
-        mode: "no-cors",
-
-        body: formData
-
-    }).catch(() => {
-
-        console.log(
-            "Google Form submission attempted."
-        );
-
-    });
-
-}
-
-
-/* =========================================
-   SCREEN SWITCHING
-========================================= */
-
-function showScreen(targetScreen) {
+function showScreen(id) {
 
     screens.forEach(screen => {
-
         screen.classList.remove("active");
-
     });
 
-    if (targetScreen) {
+    const target = document.getElementById(id);
 
-        targetScreen.classList.add("active");
-
+    if (target) {
+        target.classList.add("active");
     }
 
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
 
 
 /* =========================================
-   STAR BACKGROUND
+   START
 ========================================= */
 
-const starsContainer =
-    document.getElementById("stars");
+startBtn.addEventListener("click", () => {
 
+    showScreen("countdown");
 
-if (starsContainer) {
+    startMusic();
 
-    for (let i = 0; i < 90; i++) {
-
-        const star =
-            document.createElement("div");
-
-        star.classList.add("star");
-
-        star.style.left =
-            Math.random() * 100 + "%";
-
-        star.style.top =
-            Math.random() * 100 + "%";
-
-        star.style.setProperty(
-            "--duration",
-            2 + Math.random() * 4 + "s"
-        );
-
-        star.style.animationDelay =
-            Math.random() * 4 + "s";
-
-        starsContainer.appendChild(star);
-
-    }
-
-}
-
-
-/* =========================================
-   INTRO
-========================================= */
-
-if (startBtn) {
-
-    startBtn.addEventListener(
-        "click",
-        () => {
-
-            showScreen(countdown);
-
-            createConfetti(50);
-
-            tryMusic();
-
-        }
-    );
-
-}
-
-
-/* =========================================
-   MUSIC CONTROL
-========================================= */
-
-function tryMusic() {
-
-    if (!bgMusic) return;
-
-    bgMusic.volume = 0.20;
-
-    bgMusic.play()
-        .then(() => {
-
-            musicPlaying = true;
-
-            if (musicBtn) {
-
-                musicBtn.textContent = "♫";
-
-            }
-
-        })
-        .catch(() => {
-
-            musicPlaying = false;
-
-        });
-
-}
-
-
-if (musicBtn && bgMusic) {
-
-    musicBtn.addEventListener(
-        "click",
-        () => {
-
-            if (musicPlaying) {
-
-                bgMusic.pause();
-
-                musicPlaying = false;
-
-                musicBtn.textContent = "♪";
-
-            } else {
-
-                bgMusic.volume = 0.20;
-
-                bgMusic.play()
-                    .then(() => {
-
-                        musicPlaying = true;
-
-                        musicBtn.textContent =
-                            "♫";
-
-                    })
-                    .catch(() => {});
-
-            }
-
-        }
-    );
-
-}
+});
 
 
 /* =========================================
    COUNTDOWN
 ========================================= */
 
-function getBirthdayDate() {
-
-    const now = new Date();
-
-    let year =
-        now.getFullYear();
-
-    let target =
-        new Date(
-            year,
-            7,
-            24,
-            0,
-            0,
-            0
-        );
-
-    if (now > target) {
-
-        target =
-            new Date(
-                year + 1,
-                7,
-                24,
-                0,
-                0,
-                0
-            );
-
-    }
-
-    return target;
-
-}
+const targetDate = new Date(
+    "August 24, 2026 00:00:00"
+).getTime();
 
 
 function updateCountdown() {
 
-    const target =
-        getBirthdayDate();
+    const now = new Date().getTime();
 
-    const now =
-        new Date();
+    const difference = targetDate - now;
 
-    let difference =
-        target.getTime() -
-        now.getTime();
+    const days = document.getElementById("days");
+    const hours = document.getElementById("hours");
+    const minutes = document.getElementById("minutes");
+    const seconds = document.getElementById("seconds");
+    const message = document.getElementById("countdownMessage");
 
+    if (difference <= 0) {
 
-    if (difference < 0) {
+        days.textContent = "00";
+        hours.textContent = "00";
+        minutes.textContent = "00";
+        seconds.textContent = "00";
 
-        difference = 0;
+        message.textContent =
+            "Today is your special day ✨";
 
+        return;
     }
 
+    const d = Math.floor(
+        difference / (1000 * 60 * 60 * 24)
+    );
 
-    const days =
-        Math.floor(
-            difference /
-            (1000 * 60 * 60 * 24)
-        );
+    const h = Math.floor(
+        (difference / (1000 * 60 * 60)) % 24
+    );
 
+    const m = Math.floor(
+        (difference / (1000 * 60)) % 60
+    );
 
-    const hours =
-        Math.floor(
-            (difference /
-                (1000 * 60 * 60)) % 24
-        );
+    const s = Math.floor(
+        (difference / 1000) % 60
+    );
 
-
-    const minutes =
-        Math.floor(
-            (difference /
-                (1000 * 60)) % 60
-        );
-
-
-    const seconds =
-        Math.floor(
-            (difference / 1000) % 60
-        );
-
-
-    const daysElement =
-        document.getElementById("days");
-
-    const hoursElement =
-        document.getElementById("hours");
-
-    const minutesElement =
-        document.getElementById("minutes");
-
-    const secondsElement =
-        document.getElementById("seconds");
-
-
-    if (daysElement)
-        daysElement.textContent =
-            String(days).padStart(2, "0");
-
-
-    if (hoursElement)
-        hoursElement.textContent =
-            String(hours).padStart(2, "0");
-
-
-    if (minutesElement)
-        minutesElement.textContent =
-            String(minutes).padStart(2, "0");
-
-
-    if (secondsElement)
-        secondsElement.textContent =
-            String(seconds).padStart(2, "0");
-
+    days.textContent = String(d).padStart(2, "0");
+    hours.textContent = String(h).padStart(2, "0");
+    minutes.textContent = String(m).padStart(2, "0");
+    seconds.textContent = String(s).padStart(2, "0");
 }
 
 
 updateCountdown();
 
-setInterval(
-    updateCountdown,
-    1000
-);
+setInterval(updateCountdown, 1000);
 
 
 /* =========================================
    COUNTDOWN → BIRTHDAY
 ========================================= */
 
-if (countdownBtn) {
+countdownBtn.addEventListener("click", () => {
 
-    countdownBtn.addEventListener(
-        "click",
-        () => {
+    showScreen("birthday");
 
-            showScreen(birthday);
-
-            createConfetti(90);
-
-        }
-    );
-
-}
+});
 
 
 /* =========================================
    BIRTHDAY → MESSAGE
 ========================================= */
 
-if (birthdayBtn) {
+birthdayBtn.addEventListener("click", () => {
 
-    birthdayBtn.addEventListener(
-        "click",
-        () => {
+    showScreen("message");
 
-            showScreen(message);
+    startTyping();
 
-            startTyping();
-
-        }
-    );
-
-}
+});
 
 
 /* =========================================
    TYPING MESSAGE
 ========================================= */
 
-const personalMessage =
-    "Ragini, tumhare birthday par main kuch simple sa kehna chahta tha. Tum mere liye genuinely special ho, aur isi wajah se maine socha ki sirf ek normal birthday message bhejne ke bajay tumhare liye kuch alag banaya jaye. I hope this little surprise makes you smile. ❤️";
+const message =
+`Ragini,
+
+I just wanted to make something a little different for your birthday.
+
+Sometimes the simplest moments become the ones we remember the most.
+
+So this isn't just a birthday message...
+
+It's a small reminder that you are genuinely special.
+
+I hope your day is filled with happiness, laughter and lots of beautiful moments. ✨`;
 
 
 let typingStarted = false;
@@ -436,49 +186,37 @@ function startTyping() {
 
     typingStarted = true;
 
-    const typingText =
-        document.getElementById(
-            "typingText"
-        );
-
-
-    if (!typingText) return;
-
+    typingText.textContent = "";
 
     let index = 0;
 
-    typingText.textContent = "";
+    const speed = 32;
 
 
-    const interval =
-        setInterval(() => {
+    function typeCharacter() {
+
+        if (index < message.length) {
 
             typingText.textContent +=
-                personalMessage[index];
+                message.charAt(index);
 
             index++;
 
+            setTimeout(
+                typeCharacter,
+                speed
+            );
 
-            if (
-                index >=
-                personalMessage.length
-            ) {
+        } else {
 
-                clearInterval(interval);
+            messageBtn.classList.remove("hidden");
+
+        }
+
+    }
 
 
-                if (messageBtn) {
-
-                    messageBtn.classList.remove(
-                        "hidden"
-                    );
-
-                }
-
-            }
-
-        }, 30);
-
+    typeCharacter();
 }
 
 
@@ -486,322 +224,112 @@ function startTyping() {
    MESSAGE → MEMORIES
 ========================================= */
 
-if (messageBtn) {
+messageBtn.addEventListener("click", () => {
 
-    messageBtn.addEventListener(
-        "click",
-        () => {
+    showScreen("memories");
 
-            showScreen(memories);
-
-        }
-    );
-
-}
+});
 
 
 /* =========================================
    MEMORIES → FINAL MESSAGE
 ========================================= */
 
-if (memoriesBtn) {
+memoriesBtn.addEventListener("click", () => {
 
-    memoriesBtn.addEventListener(
-        "click",
-        () => {
+    showScreen("finalMessage");
 
-            showScreen(finalMessage);
-
-        }
-    );
-
-}
+});
 
 
 /* =========================================
-   FINAL MESSAGE → PROPOSAL
+   FINAL → QUESTION
 ========================================= */
 
-if (questionBtn) {
+questionBtn.addEventListener("click", () => {
 
-    questionBtn.addEventListener(
-        "click",
-        () => {
+    showScreen("proposal");
 
-            showScreen(proposal);
-
-        }
-    );
-
-}
+});
 
 
 /* =========================================
-   YES ❤️
+   PROPOSAL — YES
 ========================================= */
 
-if (yesBtn) {
+yesBtn.addEventListener("click", () => {
 
-    yesBtn.addEventListener(
-        "click",
-        () => {
+    answerText.textContent =
+        "That honestly made me smile. ❤️";
 
-            /*
-              Google Sheet:
-              YES 💝
-            */
+    setTimeout(() => {
 
-            submitAnswer("YES 💝");
+        showResult(
+            "💖",
+            "You just made this day",
+            "even more special. ❤️"
+        );
 
+        createConfetti();
 
-            createConfetti(150);
+    }, 900);
 
-
-            setTimeout(() => {
-
-                if (resultIcon) {
-
-                    resultIcon.textContent =
-                        "❤️";
-
-                }
-
-
-                if (resultTitle) {
-
-                    resultTitle.innerHTML =
-                        "A new chapter can start <span>here.</span>";
-
-                }
-
-
-                if (resultMessage) {
-
-                    resultMessage.textContent =
-                        "Thank you for giving it a chance. And once again, Happy Birthday, Ragini! ✨";
-
-                }
-
-
-                showScreen(result);
-
-            }, 800);
-
-        }
-    );
-
-}
+});
 
 
 /* =========================================
-   MAYBE 🙂
+   PROPOSAL — MAYBE
 ========================================= */
 
-if (maybeBtn) {
+maybeBtn.addEventListener("click", () => {
 
-    maybeBtn.addEventListener(
-        "click",
-        () => {
+    answerText.textContent =
+        "Take your time. There's absolutely no pressure. 🙂";
 
-            /*
-              Google Sheet:
-              Maybe 🙂
-            */
-
-            submitAnswer("Maybe 🙂");
-
-
-            setTimeout(() => {
-
-                if (resultIcon) {
-
-                    resultIcon.textContent =
-                        "✨";
-
-                }
-
-
-                if (resultTitle) {
-
-                    resultTitle.innerHTML =
-                        "Take your time. <span>No pressure.</span>";
-
-                }
-
-
-                if (resultMessage) {
-
-                    resultMessage.textContent =
-                        "Whatever you decide, I hope your birthday is genuinely wonderful. ❤️";
-
-                }
-
-
-                showScreen(result);
-
-            }, 500);
-
-        }
-    );
-
-}
+});
 
 
 /* =========================================
-   NO → SECOND CONFIRMATION
+   PROPOSAL — NO
 ========================================= */
 
-if (noBtn) {
+noBtn.addEventListener("click", () => {
 
-    noBtn.addEventListener(
-        "click",
-        () => {
+    answerText.textContent =
+        "That's completely okay. I respect your answer. ❤️";
 
-            showNoConfirmation();
+    setTimeout(() => {
 
-        }
-    );
-
-}
-
-
-function showNoConfirmation() {
-
-    if (!answerText) return;
-
-
-    answerText.innerHTML = `
-
-        <strong>
-            Are you sure? ❤️
-        </strong>
-
-        <br><br>
-
-        Please, ek baar soch lena.
-        I just wanted to ask you honestly.
-
-        <br><br>
-
-        <button
-            id="thinkBtn"
-            class="choice-btn maybe-btn"
-        >
-            I'll think about it 🙂
-        </button>
-
-        <button
-            id="sureNoBtn"
-            class="choice-btn no-btn"
-        >
-            No, I'm sure
-        </button>
-
-    `;
-
-
-    const thinkBtn =
-        document.getElementById(
-            "thinkBtn"
+        showResult(
+            "✨",
+            "Thank you for being honest.",
+            "Whatever happens, I genuinely wish you happiness. Happy Birthday, Ragini. ❤️"
         );
 
+    }, 1000);
 
-    const sureNoBtn =
-        document.getElementById(
-            "sureNoBtn"
-        );
+});
 
 
-    /* -------------------------------
-       I'LL THINK ABOUT IT
-    -------------------------------- */
+/* =========================================
+   RESULT
+========================================= */
 
-    if (thinkBtn) {
+function showResult(
+    icon,
+    title,
+    messageText
+) {
 
-        thinkBtn.addEventListener(
-            "click",
-            () => {
+    resultIcon.textContent = icon;
 
-                submitAnswer(
-                    "Maybe 🙂"
-                );
+    resultTitle.innerHTML =
+        title;
 
+    resultMessage.textContent =
+        messageText;
 
-                if (resultIcon) {
-
-                    resultIcon.textContent =
-                        "✨";
-
-                }
-
-
-                if (resultTitle) {
-
-                    resultTitle.innerHTML =
-                        "Take your time. <span>No pressure.</span>";
-
-                }
-
-
-                if (resultMessage) {
-
-                    resultMessage.textContent =
-                        "Thank you for thinking about it. Happy Birthday, Ragini! ❤️";
-
-                }
-
-
-                showScreen(result);
-
-            }
-        );
-
-    }
-
-
-    /* -------------------------------
-       NO, I'M SURE
-    -------------------------------- */
-
-    if (sureNoBtn) {
-
-        sureNoBtn.addEventListener(
-            "click",
-            () => {
-
-                submitAnswer("No");
-
-
-                if (resultIcon) {
-
-                    resultIcon.textContent =
-                        "🌸";
-
-                }
-
-
-                if (resultTitle) {
-
-                    resultTitle.innerHTML =
-                        "Thank you for being <span>honest.</span>";
-
-                }
-
-
-                if (resultMessage) {
-
-                    resultMessage.textContent =
-                        "I respect your answer. I hope you have an amazing birthday and a wonderful year ahead. ❤️";
-
-                }
-
-
-                showScreen(result);
-
-            }
-        );
-
-    }
+    showScreen("result");
 
 }
 
@@ -810,66 +338,172 @@ function showNoConfirmation() {
    RESTART
 ========================================= */
 
-if (restartBtn) {
+restartBtn.addEventListener("click", () => {
 
-    restartBtn.addEventListener(
-        "click",
-        () => {
+    typingStarted = false;
 
-            typingStarted = false;
+    typingText.textContent = "";
+
+    messageBtn.classList.add("hidden");
+
+    answerText.textContent = "";
+
+    resultIcon.textContent = "✨";
+
+    resultTitle.innerHTML =
+        `Whatever your answer,
+        <span>stay amazing.</span>`;
+
+    resultMessage.textContent =
+        "And once again, Happy Birthday, Ragini. ❤️";
+
+    showScreen("intro");
+
+});
 
 
-            if (messageBtn) {
+/* =========================================
+   MUSIC
+========================================= */
 
-                messageBtn.classList.add(
-                    "hidden"
-                );
-
-            }
+let musicPlaying = false;
 
 
-            if (answerText) {
+function startMusic() {
 
-                answerText.textContent = "";
+    if (!bgMusic) return;
 
-            }
+    bgMusic.volume = 0.35;
 
+    bgMusic.play()
+        .then(() => {
 
-            showScreen(intro);
+            musicPlaying = true;
 
-        }
-    );
+            musicBtn.textContent = "♫";
+
+        })
+        .catch(() => {
+
+            musicPlaying = false;
+
+        });
 
 }
+
+
+musicBtn.addEventListener("click", () => {
+
+    if (!bgMusic) return;
+
+
+    if (musicPlaying) {
+
+        bgMusic.pause();
+
+        musicPlaying = false;
+
+        musicBtn.textContent = "🔇";
+
+    } else {
+
+        bgMusic.play()
+            .then(() => {
+
+                musicPlaying = true;
+
+                musicBtn.textContent = "♫";
+
+            })
+            .catch(() => {
+
+                musicPlaying = false;
+
+            });
+
+    }
+
+});
+
+
+/* =========================================
+   STARS
+========================================= */
+
+const starsContainer =
+    document.getElementById("stars");
+
+
+function createStars() {
+
+    if (!starsContainer) return;
+
+    starsContainer.innerHTML = "";
+
+    const numberOfStars =
+        window.innerWidth < 700 ? 55 : 100;
+
+
+    for (
+        let i = 0;
+        i < numberOfStars;
+        i++
+    ) {
+
+        const star =
+            document.createElement("div");
+
+        star.className = "star";
+
+        star.style.left =
+            Math.random() * 100 + "%";
+
+        star.style.top =
+            Math.random() * 100 + "%";
+
+        star.style.setProperty(
+            "--duration",
+            (2 + Math.random() * 4) + "s"
+        );
+
+        star.style.animationDelay =
+            (-Math.random() * 4) + "s";
+
+        starsContainer.appendChild(star);
+
+    }
+
+}
+
+
+createStars();
 
 
 /* =========================================
    CONFETTI
 ========================================= */
 
-function createConfetti(amount) {
+function createConfetti() {
 
     if (!confetti) return;
-
 
     confetti.innerHTML = "";
 
 
+    const pieces = 90;
+
+
     for (
         let i = 0;
-        i < amount;
+        i < pieces;
         i++
     ) {
 
         const piece =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
-
-        piece.classList.add(
-            "confetti-piece"
-        );
+        piece.className =
+            "confetti-piece";
 
 
         piece.style.left =
@@ -877,59 +511,59 @@ function createConfetti(amount) {
 
 
         piece.style.width =
-            5 + Math.random() * 7 + "px";
+            (5 + Math.random() * 7) + "px";
 
 
         piece.style.height =
-            8 + Math.random() * 12 + "px";
-
-
-        piece.style.opacity =
-            0.6 +
-            Math.random() * 0.4;
+            (8 + Math.random() * 12) + "px";
 
 
         piece.style.background =
-            getConfettiColor();
+            getRandomColor();
 
 
         piece.style.setProperty(
             "--fall-time",
-            2 +
-            Math.random() * 2.5 +
-            "s"
+            (3 + Math.random() * 4) + "s"
         );
 
 
         piece.style.animationDelay =
-            Math.random() * 0.8 +
-            "s";
+            (Math.random() * 1.5) + "s";
 
 
         confetti.appendChild(piece);
 
     }
 
+
+    setTimeout(() => {
+
+        confetti.innerHTML = "";
+
+    }, 8000);
+
 }
 
 
-function getConfettiColor() {
+/* =========================================
+   CONFETTI COLORS
+========================================= */
+
+function getRandomColor() {
 
     const colors = [
-
         "#ff6fae",
         "#987cff",
         "#ffffff",
         "#ffd166",
-        "#70e1f5"
-
+        "#6ee7ff",
+        "#ff9f68"
     ];
-
 
     return colors[
         Math.floor(
-            Math.random() *
-            colors.length
+            Math.random() * colors.length
         )
     ];
 
@@ -937,48 +571,35 @@ function getConfettiColor() {
 
 
 /* =========================================
-   BUTTON PRESS EFFECT
+   BUTTON KEYBOARD ACCESS
 ========================================= */
 
-document
-    .querySelectorAll("button")
-    .forEach(button => {
+document.addEventListener(
+    "keydown",
+    (event) => {
 
-        button.addEventListener(
-            "pointerdown",
-            () => {
+        if (event.key === "Escape") {
 
-                button.style.transform =
-                    "scale(0.96)";
+            showScreen("intro");
 
-            }
-        );
+        }
 
-
-        button.addEventListener(
-            "pointerup",
-            () => {
-
-                button.style.transform =
-                    "";
-
-            }
-        );
-
-
-        button.addEventListener(
-            "pointerleave",
-            () => {
-
-                button.style.transform =
-                    "";
-
-            }
-        );
-
-    });
+    }
+);
 
 
 /* =========================================
-   END
+   PREVENT ACCIDENTAL HORIZONTAL SCROLL
 ========================================= */
+
+document.documentElement.style.overflowX =
+    "hidden";
+
+
+/* =========================================
+   READY
+========================================= */
+
+console.log(
+    "✨ Ragini Birthday Experience loaded successfully."
+);
