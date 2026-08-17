@@ -1,182 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>For Ragini ✨</title>
-
-    <meta
-        name="description"
-        content="A special birthday experience made for Ragini."
-    >
-
-    <link rel="stylesheet" href="style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-        rel="stylesheet"
-    >
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Ragini ✨</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <div class="background">
-    <div class="aurora aurora-one"></div>
-    <div class="aurora aurora-two"></div>
+    <div class="aurora one"></div>
+    <div class="aurora two"></div>
     <div id="stars"></div>
 </div>
 
-<button id="musicBtn" class="music-btn" aria-label="Toggle music">
-    ♫
-</button>
+<button id="musicBtn" class="music-btn">♫</button>
 
 <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-
 <!-- INTRO -->
-
 <section id="intro" class="screen active">
-
-    <div class="intro-wrapper">
-
-        <div class="eyebrow">
-            A LITTLE SOMETHING FOR YOU
-        </div>
-
-        <h1>
-            Hey,
-            <span>Ragini.</span>
-        </h1>
-
-        <p class="intro-subtitle">
-            I made this little experience
-            especially for your birthday.
-        </p>
+    <div class="content">
+        <div class="eyebrow">A LITTLE SOMETHING FOR YOU</div>
+        <h1>Hey, <span>Ragini.</span></h1>
+        <p>I made this little experience especially for your birthday.</p>
 
         <button id="startBtn" class="main-btn">
-            <span>Open the surprise</span>
-            <b>→</b>
+            Open the surprise <b>→</b>
         </button>
-
-        <p class="scroll-note">
-            headphones recommended • volume low
-        </p>
-
     </div>
-
 </section>
-
 
 <!-- COUNTDOWN -->
-
 <section id="countdown" class="screen">
-
-    <div class="countdown-wrapper">
-
-        <div class="eyebrow">
-            SOMETHING SPECIAL IS COMING
-        </div>
-
-        <h2>
-            Counting down to
-            <span>24 August</span>
-        </h2>
+    <div class="content">
+        <div class="eyebrow">SOMETHING SPECIAL</div>
+        <h2>Counting down to <span>24 August</span></h2>
 
         <div class="timer">
-
-            <div class="time-box">
-                <strong id="days">00</strong>
-                <small>Days</small>
-            </div>
-
+            <div class="time-box"><strong id="days">00</strong><small>Days</small></div>
             <div class="colon">:</div>
-
-            <div class="time-box">
-                <strong id="hours">00</strong>
-                <small>Hours</small>
-            </div>
-
+            <div class="time-box"><strong id="hours">00</strong><small>Hours</small></div>
             <div class="colon">:</div>
-
-            <div class="time-box">
-                <strong id="minutes">00</strong>
-                <small>Minutes</small>
-            </div>
-
+            <div class="time-box"><strong id="minutes">00</strong><small>Minutes</small></div>
             <div class="colon">:</div>
-
-            <div class="time-box">
-                <strong id="seconds">00</strong>
-                <small>Seconds</small>
-            </div>
-
+            <div class="time-box"><strong id="seconds">00</strong><small>Seconds</small></div>
         </div>
 
-        <p id="countdownMessage">
-            Until your special day ✨
-        </p>
+        <p>Until your special day ✨</p>
 
         <button id="countdownBtn" class="main-btn">
-            Continue
-            <b>→</b>
+            Continue <b>→</b>
         </button>
-
     </div>
-
 </section>
 
-
 <!-- BIRTHDAY -->
-
 <section id="birthday" class="screen">
+    <div class="content">
+        <div class="cake">🎂</div>
+        <div class="eyebrow">24 • AUGUST</div>
+        <h2>Happy Birthday, <span>Ragini!</span></h2>
+        <p>May today bring you plenty of reasons to smile.</p>
 
-    <div class="birthday-wrapper">
+        <button id="birthdayBtn" class="main-btn">
+            There's more <b>→</b>
+        </button>
+    </div>
+</section>
 
-        <div class="cake-wrap">
-            <div class="cake">🎂</div>
-            <div class="cake-glow"></div>
+<!-- MESSAGE -->
+<section id="message" class="screen">
+    <div class="glass-card">
+        <div class="eyebrow">A LITTLE NOTE</div>
+        <h2>Something I wanted to say...</h2>
+
+        <div id="typingText" class="typing-text"></div>
+
+        <button id="messageBtn" class="main-btn hidden">
+            Keep going <b>→</b>
+        </button>
+    </div>
+</section>
+
+<!-- MEMORIES -->
+<section id="memories" class="screen">
+    <div class="content wide">
+        <div class="eyebrow">LITTLE THINGS</div>
+        <h2>Some moments are <span>worth remembering.</span></h2>
+
+        <div class="memory-grid">
+            <div class="memory-card">
+                <div class="memory-icon">✦</div>
+                <h3>Smiles</h3>
+                <p>The little moments that make an ordinary day better.</p>
+            </div>
+
+            <div class="memory-card">
+                <div class="memory-icon">☾</div>
+                <h3>Conversations</h3>
+                <p>Random talks that somehow become memorable.</p>
+            </div>
+
+            <div class="memory-card">
+                <div class="memory-icon">♡</div>
+                <h3>Good moments</h3>
+                <p>Simple moments that deserve to stay special.</p>
+            </div>
         </div>
 
-        <div class="eyebrow">
-            24 • AUGUST
-        </div>
+        <button id="memoriesBtn" class="main-btn">
+            One last thing <b>→</b>
+        </button>
+    </div>
+</section>
+
+<!-- FINAL -->
+<section id="finalMessage" class="screen">
+    <div class="content">
+        <div class="big-heart">♡</div>
+        <div class="eyebrow">ONE LAST THING</div>
 
         <h2>
-            Happy Birthday,
-            <span>Ragini!</span>
+            Some people make ordinary days <span>better.</span>
+        </h2>
+
+        <p>And I just wanted you to know that you're one of those people.</p>
+
+        <button id="questionBtn" class="main-btn">
+            I have a question <b>→</b>
+        </button>
+    </div>
+</section>
+
+<!-- QUESTION -->
+<section id="proposal" class="screen">
+    <div class="glass-card">
+        <div class="proposal-heart">♥</div>
+
+        <div class="eyebrow">THE QUESTION</div>
+
+        <h2>
+            Ragini,<br>
+            will you <span>give us a chance?</span>
         </h2>
 
         <p>
-            May today bring you
-            plenty of reasons to smile.
+            I really like you, and I wanted to ask you honestly.<br>
+            Whatever your answer, I'll respect it. ❤️
         </p>
 
-        <button id="birthdayBtn" class="main-btn">
-            There's more
-            <b>→</b>
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- MESSAGE -->
-
-<section id="message" class="screen">
-
-    <div class="glass-card message-card">
-
-        <div class="card-number">01</div>
-
-        <div class="eyebrow">
-            A LITTLE NOTE
+        <div class="proposal-buttons">
+            <button id="yesBtn" class="choice-btn yes">Yes ❤️</button>
+            <button id="maybeBtn" class="choice-btn maybe">Maybe 🙂</button>
+            <button id="noBtn" class="choice-btn no">No</button>
         </div>
 
-        <
+        <p id="answerText" class="answer-text"></p>
+    </div>
+</section>
+
+<!-- RESULT -->
+<section id="result" class="screen">
+    <div class="content">
+        <div id="resultIcon" class="result-icon">✨</div>
+
+        <div class="eyebrow">THANK YOU</div>
+
+        <h2 id="resultTitle">
+            Whatever your answer, <span>stay amazing.</span>
+        </h2>
+
+        <p id="resultMessage">
+            Happy Birthday, Ragini. ❤️
+        </p>
+
+        <button id="restartBtn" class="main-btn">
+            Replay <b>↻</b>
+        </button>
+    </div>
+</section>
+
+<div id="confetti"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
