@@ -2,770 +2,181 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For Ragini ✨</title>
 
     <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
+        name="description"
+        content="A special birthday experience made for Ragini."
     >
 
-    <meta
-        name="theme-color"
-        content="#080812"
-    >
+    <link rel="stylesheet" href="style.css">
 
-    <title>For Ragini ❤️</title>
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
         rel="stylesheet"
     >
-
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
-    <!-- =========================================
-         BACKGROUND
-    ========================================== -->
+<div class="background">
+    <div class="aurora aurora-one"></div>
+    <div class="aurora aurora-two"></div>
+    <div id="stars"></div>
+</div>
 
-    <div class="background">
+<button id="musicBtn" class="music-btn" aria-label="Toggle music">
+    ♫
+</button>
 
-        <div class="aurora aurora-one"></div>
-
-        <div class="aurora aurora-two"></div>
-
-        <div id="stars"></div>
-
-    </div>
-
-
-    <!-- =========================================
-         OPTIONAL MUSIC
-
-         Upload your own music.mp3
-         to the GitHub repository.
-
-         The browser may require the user
-         to tap Start before music can play.
-    ========================================== -->
-
-    <audio
-        id="bgMusic"
-        loop
-        preload="auto"
-    >
-        <source
-            src="music.mp3"
-            type="audio/mpeg"
-        >
-    </audio>
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
 
-    <!-- =========================================
-         MUSIC BUTTON
-    ========================================== -->
+<!-- INTRO -->
 
-    <button
-        id="musicBtn"
-        class="music-btn"
-        aria-label="Toggle music"
-    >
-        ♪
-    </button>
+<section id="intro" class="screen active">
 
+    <div class="intro-wrapper">
 
-    <!-- =========================================
-         TOP PROGRESS BAR
-    ========================================== -->
+        <div class="eyebrow">
+            A LITTLE SOMETHING FOR YOU
+        </div>
 
-    <div class="progress">
+        <h1>
+            Hey,
+            <span>Ragini.</span>
+        </h1>
 
-        <span id="progressBar"></span>
+        <p class="intro-subtitle">
+            I made this little experience
+            especially for your birthday.
+        </p>
+
+        <button id="startBtn" class="main-btn">
+            <span>Open the surprise</span>
+            <b>→</b>
+        </button>
+
+        <p class="scroll-note">
+            headphones recommended • volume low
+        </p>
 
     </div>
 
-
-    <!-- =========================================
-         CONFETTI
-    ========================================== -->
-
-    <div id="confetti"></div>
+</section>
 
 
-    <!-- =========================================
-         MAIN WEBSITE
-    ========================================== -->
+<!-- COUNTDOWN -->
 
-    <main>
+<section id="countdown" class="screen">
 
+    <div class="countdown-wrapper">
 
-        <!-- =====================================
-             SCREEN 1 — INTRO
-        ====================================== -->
+        <div class="eyebrow">
+            SOMETHING SPECIAL IS COMING
+        </div>
 
-        <section
-            id="intro"
-            class="screen active"
-        >
+        <h2>
+            Counting down to
+            <span>24 August</span>
+        </h2>
 
-            <div class="hero-wrap">
+        <div class="timer">
 
-                <div class="eyebrow">
-                    A LITTLE SURPRISE • 24 AUGUST
-                </div>
-
-
-                <h1>
-                    For
-                    <span>Ragini</span>
-                    <br>
-                    with a little magic.
-                </h1>
-
-
-                <p class="intro-subtitle">
-
-                    Some messages are better
-                    experienced than simply sent.
-
-                </p>
-
-
-                <button
-                    id="startBtn"
-                    class="main-btn"
-                >
-
-                    Open your surprise
-
-                    <span>→</span>
-
-                </button>
-
-
-                <div class="scroll-note">
-
-                    Tap when you're ready
-
-                </div>
-
+            <div class="time-box">
+                <strong id="days">00</strong>
+                <small>Days</small>
             </div>
 
-        </section>
+            <div class="colon">:</div>
 
-
-
-        <!-- =====================================
-             SCREEN 2 — COUNTDOWN
-        ====================================== -->
-
-        <section
-            id="countdown"
-            class="screen"
-        >
-
-            <div class="countdown-wrapper">
-
-                <div class="eyebrow">
-                    COUNTING DOWN TO YOUR DAY
-                </div>
-
-
-                <h2>
-
-                    Almost time,
-                    <span>Ragini.</span>
-
-                </h2>
-
-
-                <div class="timer">
-
-
-                    <div class="time-box">
-
-                        <strong id="days">
-                            00
-                        </strong>
-
-                        <small>
-                            Days
-                        </small>
-
-                    </div>
-
-
-                    <div class="colon">
-                        :
-                    </div>
-
-
-                    <div class="time-box">
-
-                        <strong id="hours">
-                            00
-                        </strong>
-
-                        <small>
-                            Hours
-                        </small>
-
-                    </div>
-
-
-                    <div class="colon">
-                        :
-                    </div>
-
-
-                    <div class="time-box">
-
-                        <strong id="minutes">
-                            00
-                        </strong>
-
-                        <small>
-                            Minutes
-                        </small>
-
-                    </div>
-
-
-                    <div class="colon">
-                        :
-                    </div>
-
-
-                    <div class="time-box">
-
-                        <strong id="seconds">
-                            00
-                        </strong>
-
-                        <small>
-                            Seconds
-                        </small>
-
-                    </div>
-
-
-                </div>
-
-
-                <p id="countdownMessage">
-
-                    A small journey before
-                    the actual surprise.
-
-                </p>
-
-
-                <button
-                    id="countdownBtn"
-                    class="main-btn"
-                >
-
-                    Continue
-
-                    <span>→</span>
-
-                </button>
-
+            <div class="time-box">
+                <strong id="hours">00</strong>
+                <small>Hours</small>
             </div>
 
-        </section>
+            <div class="colon">:</div>
 
-
-
-        <!-- =====================================
-             SCREEN 3 — BIRTHDAY
-        ====================================== -->
-
-        <section
-            id="birthday"
-            class="screen"
-        >
-
-            <div class="birthday-wrapper">
-
-
-                <div class="cake-wrap">
-
-                    <div class="cake-glow"></div>
-
-                    <div class="cake">
-                        🎂
-                    </div>
-
-                </div>
-
-
-                <div class="eyebrow">
-                    TODAY IS YOUR DAY
-                </div>
-
-
-                <h2>
-
-                    Happy Birthday,
-                    <span>Ragini.</span>
-
-                </h2>
-
-
-                <p>
-
-                    May this year bring you
-                    more smiles, good memories
-                    and beautiful surprises.
-
-                </p>
-
-
-                <button
-                    id="birthdayBtn"
-                    class="main-btn"
-                >
-
-                    There's more
-
-                    <span>→</span>
-
-                </button>
-
-
+            <div class="time-box">
+                <strong id="minutes">00</strong>
+                <small>Minutes</small>
             </div>
 
-        </section>
+            <div class="colon">:</div>
 
-
-
-        <!-- =====================================
-             SCREEN 4 — MESSAGE
-        ====================================== -->
-
-        <section
-            id="message"
-            class="screen"
-        >
-
-            <div class="glass-card">
-
-
-                <div class="card-number">
-
-                    01 / A MESSAGE
-
-                </div>
-
-
-                <div class="eyebrow">
-
-                    JUST SOMETHING
-                    I WANTED TO SAY
-
-                </div>
-
-
-                <h2>
-
-                    A few words,
-                    <br>
-
-                    <span>from me.</span>
-
-                </h2>
-
-
-                <p
-                    id="typingText"
-                    class="typing-text"
-                ></p>
-
-
-                <button
-                    id="messageBtn"
-                    class="main-btn hidden"
-                >
-
-                    Keep going
-
-                    <span>→</span>
-
-                </button>
-
-
+            <div class="time-box">
+                <strong id="seconds">00</strong>
+                <small>Seconds</small>
             </div>
 
-        </section>
+        </div>
 
+        <p id="countdownMessage">
+            Until your special day ✨
+        </p>
 
+        <button id="countdownBtn" class="main-btn">
+            Continue
+            <b>→</b>
+        </button>
 
-        <!-- =====================================
-             SCREEN 5 — MEMORIES
-        ====================================== -->
+    </div>
 
-        <section
-            id="memories"
-            class="screen"
-        >
+</section>
 
-            <div class="memories-wrapper">
 
+<!-- BIRTHDAY -->
 
-                <div class="eyebrow">
+<section id="birthday" class="screen">
 
-                    THE LITTLE THINGS
+    <div class="birthday-wrapper">
 
-                </div>
+        <div class="cake-wrap">
+            <div class="cake">🎂</div>
+            <div class="cake-glow"></div>
+        </div>
 
+        <div class="eyebrow">
+            24 • AUGUST
+        </div>
 
-                <h2>
+        <h2>
+            Happy Birthday,
+            <span>Ragini!</span>
+        </h2>
 
-                    Some things are
+        <p>
+            May today bring you
+            plenty of reasons to smile.
+        </p>
 
-                    <span>
-                        worth remembering.
-                    </span>
+        <button id="birthdayBtn" class="main-btn">
+            There's more
+            <b>→</b>
+        </button>
 
-                </h2>
+    </div>
 
+</section>
 
-                <div class="memory-grid">
 
+<!-- MESSAGE -->
 
-                    <article class="memory-card">
+<section id="message" class="screen">
 
-                        <div class="memory-icon">
-                            ✨
-                        </div>
+    <div class="glass-card message-card">
 
-                        <h3>
-                            The smiles
-                        </h3>
+        <div class="card-number">01</div>
 
-                        <p>
+        <div class="eyebrow">
+            A LITTLE NOTE
+        </div>
 
-                            The little moments
-                            that somehow make
-                            an ordinary day feel better.
-
-                        </p>
-
-                    </article>
-
-
-
-                    <article class="memory-card">
-
-                        <div class="memory-icon">
-                            🌙
-                        </div>
-
-                        <h3>
-                            The conversations
-                        </h3>
-
-                        <p>
-
-                            Random talks,
-                            tiny jokes and moments
-                            that stay in the mind.
-
-                        </p>
-
-                    </article>
-
-
-
-                    <article class="memory-card">
-
-                        <div class="memory-icon">
-                            💫
-                        </div>
-
-                        <h3>
-                            The feeling
-                        </h3>
-
-                        <p>
-
-                            Sometimes you don't need
-                            a huge reason to know
-                            someone is special.
-
-                        </p>
-
-                    </article>
-
-
-                </div>
-
-
-                <button
-                    id="memoriesBtn"
-                    class="main-btn"
-                >
-
-                    One last thing
-
-                    <span>→</span>
-
-                </button>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================
-             SCREEN 6 — FINAL MESSAGE
-        ====================================== -->
-
-        <section
-            id="finalMessage"
-            class="screen"
-        >
-
-            <div class="final-wrapper">
-
-
-                <div class="big-heart">
-                    ♡
-                </div>
-
-
-                <div class="eyebrow">
-
-                    BEFORE YOU GO
-
-                </div>
-
-
-                <h2>
-
-                    There is one thing
-
-                    <br>
-
-                    I haven't
-                    <span>asked.</span>
-
-                </h2>
-
-
-                <p>
-
-                    I didn't want to hide it
-                    inside a birthday wish.
-
-                    So, if you're ready,
-                    there's one honest question
-                    waiting for you.
-
-                </p>
-
-
-                <button
-                    id="questionBtn"
-                    class="main-btn"
-                >
-
-                    Ask me
-
-                    <span>→</span>
-
-                </button>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================
-             SCREEN 7 — PROPOSAL
-        ====================================== -->
-
-        <section
-            id="proposal"
-            class="screen"
-        >
-
-            <div class="glass-card proposal-card">
-
-
-                <div class="proposal-heart">
-                    ♥
-                </div>
-
-
-                <div class="eyebrow">
-
-                    ONE HONEST QUESTION
-
-                </div>
-
-
-                <h2>
-
-                    Would you like to
-
-                    <span>
-                        give us a chance?
-                    </span>
-
-                </h2>
-
-
-                <p class="proposal-note">
-
-                    No pressure.
-
-                    Take whichever answer
-                    feels right to you.
-
-                    I will respect it.
-
-                </p>
-
-
-                <div class="proposal-buttons">
-
-
-                    <button
-                        id="yesBtn"
-                        class="choice-btn yes-btn"
-                    >
-
-                        Yes 💝
-
-                    </button>
-
-
-                    <button
-                        id="maybeBtn"
-                        class="choice-btn maybe-btn"
-                    >
-
-                        Maybe 🙂
-
-                    </button>
-
-
-                    <button
-                        id="noBtn"
-                        class="choice-btn no-btn"
-                    >
-
-                        No
-
-                    </button>
-
-
-                </div>
-
-
-                <div
-                    id="answerText"
-                    class="answer-text"
-                ></div>
-
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =====================================
-             SCREEN 8 — RESULT
-        ====================================== -->
-
-        <section
-            id="result"
-            class="screen"
-        >
-
-            <div class="result-wrapper">
-
-
-                <div
-                    id="resultIcon"
-                    class="result-icon"
-                >
-                    ✨
-                </div>
-
-
-                <div class="eyebrow">
-
-                    THANK YOU
-
-                </div>
-
-
-                <h2
-                    id="resultTitle"
-                >
-
-                    Whatever you choose,
-
-                    <span>
-                        thank you.
-                    </span>
-
-                </h2>
-
-
-                <p
-                    id="resultMessage"
-                >
-
-                    Your answer has been received.
-
-                </p>
-
-
-                <button
-                    id="restartBtn"
-                    class="main-btn"
-                >
-
-                    Experience it again
-
-                    <span>↺</span>
-
-                </button>
-
-
-            </div>
-
-        </section>
-
-
-    </main>
-
-
-    <!-- =========================================
-         JAVASCRIPT
-    ========================================== -->
-
-    <script src="script.js"></script>
-
-</body>
-</html>
+        <
